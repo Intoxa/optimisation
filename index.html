@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimisation PC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section id="services">
+        <h2>Nos Services</h2>
+        <p>Optimisation des performances, suppression des fichiers inutiles, mise à jour des pilotes...</p>
+        <div class="options-container">
+            <div class="options-box">
+                <a href="paiement.html?opti=1" class="option-button">Opti 1</a>
+                <a href="paiement.html?opti=2" class="option-button">Opti 2</a>
+                <a href="paiement.html?opti=3" class="option-button">Opti 3</a>
+            </div>            
+        </div>
+    </section>
+    
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Optimisation PC">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showHome()">Accueil</a></li>
+                <li><a href="contact.html">Contact</a></li> 
+            </ul>
+        </nav>
+    </header>
+
+    <section class="banner">
+        <div class="banner-text">
+            <h1 class="large-text">Optimisez votre PC pour des performances maximales</h1>
+            <p class="large-text">Profitez d'une optimisation complète pour booster votre PC</p>
+        </div>
+        <button class="cta-button" onclick="showSection()">Obtenir mon optimisation</button>
+    </section>
+
+    <footer>
+        <p>&copy 2025 - Tous droits réservés &copy;</p>
+    </footer>
+
+    <script>
+        function showSection() {
+            document.getElementById('services').style.display = 'block';
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+            document.querySelector('.banner').style.display = 'none';
+        }
+    
+        function showHome() {
+            document.getElementById('services').style.display = 'none'; // Cache la section "Nos Services"
+            document.querySelector('.banner').style.display = 'flex'; // Réaffiche la bannière d'accueil
+            document.querySelector('.banner').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="payment-container">
+        <h1>Paiement Sécurisé</h1>
+        <div class="cart">
+            <h2>Votre Panier</h2>
+            <p>Article : <span id="cart-opt">Opti 1</span></p>
+            <p>Prix : <span id="price">50€</span></p>
+            <h3>Total : <span id="total-price">50€</span></h3>
+        </div>
+
+        <!-- Zone Code Promo -->
+        <div class="promo-container">
+            <input type="text" id="promo-code" placeholder="Entrez votre code promo">
+            <button onclick="applyPromo()">Appliquer</button>
+            <p id="promo-message"></p>
+        </div>
+
+        <a id="paypal-button" class="pay-button" href="#" target="_blank">Payer avec PayPal</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const optiChoice = urlParams.get('opti');
+        const optiNames = { "1": "Opti 1", "2": "Opti 2", "3": "Opti 3" };
+        const optiPrices = { "1": 50, "2": 75, "3": 100 };
+
+        let selectedOpti = "Opti 1";
+        let selectedPrice = 50;
+
+        if (optiChoice && optiNames[optiChoice]) {
+            selectedOpti = optiNames[optiChoice];
+            selectedPrice = optiPrices[optiChoice];
+
+            document.getElementById("cart-opt").textContent = selectedOpti;
+            document.getElementById("price").textContent = selectedPrice + "€";
+            document.getElementById("total-price").textContent = selectedPrice + "€";
+        }
+
+        function updatePayPalLink() {
+            const paypalEmail = "ton-email-paypal@exemple.com";
+            const currency = "EUR";
+            const paypalURL = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${paypalEmail}&item_name=${encodeURIComponent(selectedOpti)}&amount=${selectedPrice}&currency_code=${currency}`;
+            document.getElementById("paypal-button").href = paypalURL;
+        }
+
+        updatePayPalLink();
+
+        function applyPromo() {
+            const promoCode = document.getElementById("promo-code").value;
+            const validPromos = { "OPTIMAX10": 10, "BOOST20": 20, "MEGA30": 30 };
+
+            if (validPromos[promoCode]) {
+                const discount = validPromos[promoCode];
+                const newPrice = Math.max(selectedPrice - discount, 0);
+                document.getElementById("total-price").textContent = newPrice + "€";
+                document.getElementById("promo-message").textContent = `Code appliqué: -${discount}€`;
+                selectedPrice = newPrice;
+                updatePayPalLink();
+            } else {
+                document.getElementById("promo-message").textContent = "Code invalide !";
+            }
+        }
+    </script>
+
+</body>
+</html>
