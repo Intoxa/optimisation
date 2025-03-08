@@ -275,3 +275,8 @@ h1 {
     margin-top: 10px;
     color: #ffeb3b;
 }
+#apply-promo:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
