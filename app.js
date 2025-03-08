@@ -69,8 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
 const promoCodes = {
     "PROMO10": 10, // 10% de réduction
     "OPTIMAX20": 20 // 20% de réduction
-    "MEGAREDUCE": 30 // 30% de réduction
-    "SUPERPROMO": 50 // 50% de réduction
 };
 
 let promoUsed = false; // Variable pour vérifier si un code promo a déjà été appliqué
